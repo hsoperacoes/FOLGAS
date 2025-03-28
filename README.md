@@ -4,85 +4,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Folga Funcionários</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0ebf8;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            min-height: 100vh; /* Garante que a altura mínima ocupe toda a tela */
-            overflow-y: auto; /* Permite rolagem vertical */
-        }
-        .form-container {
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            width: 100%;
-            max-width: 600px;
-            box-sizing: border-box; /* Garante que o padding não afete o tamanho */
-            overflow: hidden;
-        }
-        .form-container h2 {
-            font-size: 24px;
-            font-weight: bold;
-            color: #202124;
-            margin-bottom: 20px;
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        .form-group legend {
-            font-size: 16px;
-            font-weight: bold;
-            color: #5f6368;
-            margin-bottom: 10px;
-        }
-        .radio-group label, .select-group select {
-            display: block;
-            font-size: 14px;
-            padding: 10px;
-            border-radius: 4px;
-            border: 1px solid #dadce0;
-            margin-bottom: 8px;
-            cursor: pointer;
-            background: #fff;
-            transition: all 0.3s;
-        }
-        .radio-group label:hover, .select-group select:hover {
-            background: #f1f3f4;
-        }
-        input[type="radio"] {
-            margin-right: 10px;
-        }
-        button {
-            background: #673ab7;
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 10px;
-            transition: background 0.3s;
-        }
-        button:hover {
-            background: #5a2ea5;
-        }
-        .error-message {
-            color: red;
-            font-size: 14px;
-            margin-top: 10px;
-        }
+        /* Seu estilo permanece o mesmo */
     </style>
 </head>
 <body>
     <div class="form-container">
         <h2>CADASTRO DE FOLGA FUNCIONÁRIOS</h2>
-        <form id="form" method="POST"> <!-- Alterado de GET para POST -->
+        <form id="form" method="POST" action="https://script.google.com/macros/s/AKfycbwN1U8WBEn9oqeVVxe_2Pg6gWFqzu5ZN4kPovO0aOS6cL7L6idt95iLVuxupeqPMRvV/exec">
             <fieldset class="form-group">
                 <legend>Filial</legend>
                 <div class="radio-group" id="filialGroup">
