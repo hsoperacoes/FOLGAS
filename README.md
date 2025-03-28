@@ -1,4 +1,3 @@
-# teste
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -9,7 +8,7 @@
         function enviarFormulario() {
             const formData = new FormData(document.getElementById("formulario"));
             
-            fetch("SEU_LINK_DO_WEB_APP", {
+            fetch("https://script.google.com/macros/s/AKfycbwpnT8N9DJEkjFHhnRCnSxdW-MU-bRFn1xwstbEpLw_hMY66_HdHjhV8LVOWZGjgXJH/exec", {
                 method: "POST",
                 body: formData,
             })
@@ -38,6 +37,4 @@
         <input type="text" name="cpf" required><br><br>
         
         <button type="submit">Enviar</button>
-    </form>
-</body>
-</html>
+    </
