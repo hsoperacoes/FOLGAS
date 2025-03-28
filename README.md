@@ -21,8 +21,14 @@
 <body>
     <h2>Formulário de Dados Pessoais</h2>
     <form id="formulario" onsubmit="event.preventDefault(); enviarFormulario();">
-        <label>Nome:</label>
-        <input type="text" name="nome" required><br><br>
+        <label>Filial:</label>
+        <select name="filial" required>
+            <option value="ARTUR">ARTUR</option>
+            <option value="FLORIANO">FLORIANO</option>
+            <option value="JOTA">JOTA</option>
+            <option value="MODA">MODA</option>
+            <option value="PONTO">PONTO</option>
+        </select><br><br>
         
         <label>E-mail:</label>
         <input type="email" name="email" required><br><br>
