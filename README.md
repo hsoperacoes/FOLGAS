@@ -10,11 +10,12 @@
             background-color: #f0ebf8;
             display: flex;
             justify-content: center;
-            align-items: center;
-            height: 100vh;
+            align-items: flex-start;
+            min-height: 100vh;
             margin: 0;
             padding: 0;
             position: relative;
+            overflow-x: hidden;
         }
         .form-container {
             background: white;
@@ -126,7 +127,8 @@
         </form>
     </div>
     
-    <img class="hering-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Hering_logo.svg/1200px-Hering_logo.svg.png" alt="Hering Logo">
+    <!-- Logo da Hering -->
+    <img class="hering-logo" src="https://upload.wikimedia.org/wikipedia/commons/e/e1/Hering_logo.svg" alt="Hering Logo">
 
     <script>
         const funcionariosPorFilial = {
