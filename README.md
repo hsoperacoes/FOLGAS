@@ -127,8 +127,10 @@
             radio.addEventListener("change", function() {
                 const filialSelecionada = this.value;
                 const selectFuncionario = document.getElementById("funcionario");
-                selectFuncionario.innerHTML = ""; // Limpa as opções
-                selectFuncionario.disabled = false; // Ativa o select de funcionário
+                selectFuncionario.innerHTML = "<option value=''>Selecione o funcionário</option>"; // Reseta as opções
+
+                // Habilita o select de funcionários após selecionar a filial
+                selectFuncionario.disabled = false;
 
                 // Adiciona os funcionários da filial selecionada
                 if (funcionariosPorFilial[filialSelecionada]) {
