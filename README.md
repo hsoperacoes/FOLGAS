@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title> <!-- Título vazio para remover o "Teste" na aba do navegador -->
+    <title>Cadastro de Folga Funcionários</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -74,6 +74,18 @@
         button:hover {
             background: #5a2ea5;
         }
+
+        /* Estilo do logo da Hering */
+        .logo-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .logo-container img {
+            width: 100px;
+            height: auto;
+            border-radius: 8px;
+        }
     </style>
 </head>
 <body>
@@ -120,6 +132,11 @@
         </form>
     </div>
 
+    <!-- Logo da Hering no canto -->
+    <div class="logo-container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Logo_da_Hering.svg/1200px-Logo_da_Hering.svg.png" alt="Logo Hering">
+    </div>
+
     <script>
         const funcionariosPorFilial = {
             "ARTUR": ["FERNANDA", "LUCILENE"],
@@ -128,7 +145,7 @@
             "MODA": ["ANA CLARA", "DAYANE", "JÉSSICA", "JOSY", "LAYANE", "MARIA"],
             "PONTO": ["DANIELA", "MATHEUS", "PAULA", "PRISCILA", "SANDY", "SÔNIA"]
         };
-        
+
         document.querySelectorAll("input[name='filial']").forEach(radio => {
             radio.addEventListener("change", function() {
                 const filialSelecionada = this.value;
