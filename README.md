@@ -13,8 +13,42 @@
                 body: formData,
             })
             .then(response => response.text())
-            .then(data => alert("Dados enviados com sucesso!"))
+            .then(data => {
+                alert("Dados enviados com sucesso!");
+                document.getElementById("formulario").reset();  // Limpa os campos
+            })
             .catch(error => alert("Erro ao enviar dados!"));
+        }
+
+        function atualizarFuncionarios() {
+            const filial = document.getElementById("filial").value;
+            const funcionarioSelect = document.getElementById("funcionario");
+
+            // Limpa as opções atuais
+            funcionarioSelect.innerHTML = "<option value='' disabled selected>Selecione o Funcionário</option>";
+
+            let funcionarios = [];
+            
+            // Dependendo da filial, define os funcionários
+            if (filial === "ARTUR") {
+                funcionarios = ["FERNANDA", "LUCILENE"];
+            } else if (filial === "PONTO") {
+                funcionarios = ["SANDY", "MATHEUS"];
+            } else if (filial === "FLORIANO") {
+                funcionarios = ["JOÃO", "ANA"];
+            } else if (filial === "JOTA") {
+                funcionarios = ["MARCELO", "PAULA"];
+            } else if (filial === "MODA") {
+                funcionarios = ["CARLOS", "MARIANA"];
+            }
+
+            // Preenche a lista de funcionários de acordo com a filial
+            funcionarios.forEach(function(funcionario) {
+                const option = document.createElement("option");
+                option.value = funcionario;
+                option.textContent = funcionario;
+                funcionarioSelect.appendChild(option);
+            });
         }
     </script>
 </head>
@@ -22,22 +56,25 @@
     <h2>Formulário de Dados Pessoais</h2>
     <form id="formulario" onsubmit="event.preventDefault(); enviarFormulario();">
         <label>Filial:</label>
-        <select name="filial" required>
+        <select id="filial" name="filial" required onchange="atualizarFuncionarios()">
+            <option value="" disabled selected>Selecione a Filial</option>
             <option value="ARTUR">ARTUR</option>
             <option value="FLORIANO">FLORIANO</option>
             <option value="JOTA">JOTA</option>
             <option value="MODA">MODA</option>
             <option value="PONTO">PONTO</option>
         </select><br><br>
-        
+
         <label>Motivo da Folga:</label>
         <select name="motivo_folga" required>
             <option value="DOMINGO">DOMINGO</option>
             <option value="FERIADO">FERIADO</option>
         </select><br><br>
-        
-        <label>Telefone:</label>
-        <input type="tel" name="telefone" required><br><br>
+
+        <label>Funcionário:</label>
+        <select id="funcionario" name="funcionario" required>
+            <option value="" disabled selected>Selecione o Funcionário</option>
+        </select><br><br>
         
         <label>Data de Nascimento:</label>
         <input type="date" name="data_nascimento" required><br><br>
