@@ -2,16 +2,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Folga Funcionários</title> <!-- Título que aparece na aba do navegador -->
+    <title>Cadastro de Folga Funcionários</title> <!-- Título da aba do navegador -->
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f0ebf8;
+            margin: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
+            height: 100vh; /* Ajustando a altura para que o cabeçalho não corte */
+            overflow: hidden; /* Evita rolagem */
         }
         .form-container {
             background: white;
@@ -20,12 +22,14 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             width: 100%;
             max-width: 600px;
+            overflow: auto; /* Garantir que o formulário se ajuste */
         }
         .form-container h2 {
             font-size: 24px;
             font-weight: bold;
             color: #202124;
             margin-bottom: 20px;
+            text-align: center; /* Alinhar o título ao centro */
         }
         .form-group {
             margin-bottom: 20px;
@@ -36,7 +40,7 @@
             color: #5f6368;
             margin-bottom: 10px;
         }
-        .radio-group label, .select-group select {
+        .radio-group label, .select-group select, input[type="date"] {
             display: block;
             font-size: 14px;
             padding: 10px;
@@ -46,8 +50,9 @@
             cursor: pointer;
             background: #fff;
             transition: all 0.3s;
+            width: 100%; /* Garantir que os campos ocupem toda a largura */
         }
-        .radio-group label:hover, .select-group select:hover {
+        .radio-group label:hover, .select-group select:hover, input[type="date"]:hover {
             background: #f1f3f4;
         }
         input[type="radio"] {
