@@ -157,4 +157,45 @@
             if (!filialSelecionada) {
                 valid = false;
                 errorMessage = "Selecione a filial!";
-                document.getElementById
+                document.getElementById("filialError").textContent = errorMessage;
+            } else {
+                document.getElementById("filialError").textContent = "";
+            }
+
+            // Validando Funcionário
+            const funcionarioSelecionado = document.getElementById("funcionario").value;
+            if (!funcionarioSelecionado) {
+                valid = false;
+                errorMessage = "Selecione o funcionário!";
+                document.getElementById("funcionarioError").textContent = errorMessage;
+            } else {
+                document.getElementById("funcionarioError").textContent = "";
+            }
+
+            // Validando Motivo
+            const motivoSelecionado = document.querySelector("input[name='motivo']:checked");
+            if (!motivoSelecionado) {
+                valid = false;
+                errorMessage = "Selecione o motivo da folga!";
+                document.getElementById("motivoError").textContent = errorMessage;
+            } else {
+                document.getElementById("motivoError").textContent = "";
+            }
+
+            // Validando Data
+            const dataFolga = document.getElementById("dataFolga").value;
+            if (!dataFolga) {
+                valid = false;
+                errorMessage = "Selecione a data da folga!";
+                document.getElementById("dataFolgaError").textContent = errorMessage;
+            } else {
+                document.getElementById("dataFolgaError").textContent = "";
+            }
+
+            if (!valid) {
+                event.preventDefault(); // Bloquear o envio do formulário
+            }
+        });
+    </script>
+</body>
+</html>
