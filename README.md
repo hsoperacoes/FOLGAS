@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Folga Funcionários</title>
+    <title></title> <!-- Título removido para ficar em branco -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -74,13 +74,6 @@
         button:hover {
             background: #5a2ea5;
         }
-        .hering-logo {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 60px;
-            height: auto;
-        }
     </style>
 </head>
 <body>
@@ -126,9 +119,6 @@
             <button type="submit">Enviar</button>
         </form>
     </div>
-    
-    <!-- Logo da Hering -->
-    <img class="hering-logo" src="https://upload.wikimedia.org/wikipedia/commons/7/7d/Logo_Hering_2019.svg" alt="Hering Logo">
 
     <script>
         const funcionariosPorFilial = {
