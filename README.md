@@ -37,7 +37,7 @@
             color: #5f6368;
             margin-bottom: 10px;
         }
-        .radio-group label {
+        .radio-group label, .select-group select {
             display: block;
             font-size: 14px;
             padding: 10px;
@@ -48,7 +48,7 @@
             background: #fff;
             transition: all 0.3s;
         }
-        .radio-group label:hover {
+        .radio-group label:hover, .select-group select:hover {
             background: #f1f3f4;
         }
         input[type="radio"] {
@@ -77,12 +77,20 @@
         <form>
             <fieldset class="form-group">
                 <legend>Filial</legend>
-                <div class="radio-group">
+                <div class="radio-group" id="filialGroup">
                     <label><input type="radio" name="filial" value="ARTUR"> ARTUR</label>
                     <label><input type="radio" name="filial" value="FLORIANO"> FLORIANO</label>
                     <label><input type="radio" name="filial" value="JOTA"> JOTA</label>
                     <label><input type="radio" name="filial" value="MODA"> MODA</label>
                     <label><input type="radio" name="filial" value="PONTO"> PONTO</label>
+                </div>
+            </fieldset>
+            <fieldset class="form-group">
+                <legend>Funcionário</legend>
+                <div class="select-group">
+                    <select id="funcionario" name="funcionario">
+                        <option value="">Selecione a filial primeiro</option>
+                    </select>
                 </div>
             </fieldset>
             <fieldset class="form-group">
@@ -96,5 +104,33 @@
             <button type="submit">Enviar</button>
         </form>
     </div>
+    
+    <script>
+        const funcionariosPorFilial = {
+            "ARTUR": ["FERNANDA", "LUCILENE"],
+            "FLORIANO": ["FERNANDA", "IOLANDA", "MEIRE", "SARA", "THACIANE"],
+            "JOTA": ["BRUNO", "VERA"],
+            "MODA": ["ANA CLARA", "DAYANE", "JÉSSICA", "JOSY", "LAYANE", "MARIA"],
+            "PONTO": ["DANIELA", "MATHEUS", "PAULA", "PRISCILA", "SANDY", "SÔNIA"]
+        };
+        
+        document.querySelectorAll("input[name='filial']").forEach(radio => {
+            radio.addEventListener("change", function() {
+                const filialSelecionada = this.value;
+                const selectFuncionario = document.getElementById("funcionario");
+                selectFuncionario.innerHTML = "";
+                
+                if (funcionariosPorFilial[filialSelecionada]) {
+                    const funcionariosOrdenados = funcionariosPorFilial[filialSelecionada].sort((a, b) => a.localeCompare(b, 'pt-BR'));
+                    funcionariosOrdenados.forEach(nome => {
+                        const option = document.createElement("option");
+                        option.value = nome;
+                        option.textContent = nome;
+                        selectFuncionario.appendChild(option);
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
