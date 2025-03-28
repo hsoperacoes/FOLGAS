@@ -8,7 +8,7 @@
         function enviarFormulario() {
             const formData = new FormData(document.getElementById("formulario"));
             
-            fetch("https://script.google.com/macros/s/SEU_ID_AQUI/exec", {  // Substitua pelo seu link do Web App
+            fetch("https://script.google.com/macros/s/AKfycbyogC5qJr9fVW9KTgudFtj0-vhuuo-qfuBTcVAanafbW12kK3W9NsTnjnMtMJAyzUmE/exec", {
                 method: "POST",
                 body: formData,
             })
