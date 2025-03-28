@@ -12,9 +12,9 @@
             padding: 0;
             display: flex;
             justify-content: center;
-            align-items: center;
-            height: 100vh; /* Ajustando para altura total da tela */
-            overflow: auto; /* Ativa a barra de rolagem quando necessário */
+            align-items: flex-start;
+            min-height: 100vh;
+            overflow-y: auto; /* Garante rolagem se necessário */
         }
         .form-container {
             background: white;
@@ -23,7 +23,8 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             width: 100%;
             max-width: 600px;
-            overflow: auto; /* Garante que o formulário tenha rolagem */
+            overflow: auto; /* Permite rolagem dentro do formulário se necessário */
+            margin-top: 20px; /* Garante espaçamento do topo */
         }
         .form-container h2 {
             font-size: 24px;
