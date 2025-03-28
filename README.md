@@ -119,4 +119,28 @@
             "ARTUR": ["LUCILENE", "FERNANDA"],
             "FLORIANO": ["MEIRE", "IOLANDA", "FERNANDA", "THACIANE", "SARA"],
             "JOTA": ["BRUNO", "VERA"],
-            "MODA": ["
+            "MODA": ["DAYANE", "LAYANE", "JOSY", "MARIA", "JÉSSICA", "ANA CLARA"],
+            "PONTO": ["SÔNIA", "SANDY", "PAULA", "MATHEUS", "PRISCILA", "DANIELA"]
+        };
+
+        document.querySelectorAll("input[name='filial']").forEach(radio => {
+            radio.addEventListener("change", function() {
+                const filialSelecionada = this.value;
+                const selectFuncionario = document.getElementById("funcionario");
+                selectFuncionario.innerHTML = ""; // Limpa as opções
+                selectFuncionario.disabled = false; // Ativa o select de funcionário
+
+                // Adiciona os funcionários da filial selecionada
+                if (funcionariosPorFilial[filialSelecionada]) {
+                    funcionariosPorFilial[filialSelecionada].sort().forEach(nome => {
+                        const option = document.createElement("option");
+                        option.value = nome;
+                        option.textContent = nome;
+                        selectFuncionario.appendChild(option);
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
