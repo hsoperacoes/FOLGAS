@@ -13,8 +13,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh; /* Ajustando a altura para que o cabeçalho não corte */
-            overflow: hidden; /* Evita rolagem */
+            height: 100vh; /* Ajustando para altura total da tela */
+            overflow: auto; /* Ativa a barra de rolagem quando necessário */
         }
         .form-container {
             background: white;
@@ -23,14 +23,14 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             width: 100%;
             max-width: 600px;
-            overflow: auto; /* Garantir que o formulário se ajuste */
+            overflow: auto; /* Garante que o formulário tenha rolagem */
         }
         .form-container h2 {
             font-size: 24px;
             font-weight: bold;
             color: #202124;
             margin-bottom: 20px;
-            text-align: center; /* Alinhar o título ao centro */
+            text-align: center;
         }
         .form-group {
             margin-bottom: 20px;
@@ -51,7 +51,7 @@
             cursor: pointer;
             background: #fff;
             transition: all 0.3s;
-            width: 100%; /* Garantir que os campos ocupem toda a largura */
+            width: 100%;
         }
         .radio-group label:hover, .select-group select:hover, input[type="date"]:hover {
             background: #f1f3f4;
@@ -93,7 +93,7 @@
             <fieldset class="form-group">
                 <legend>Funcionário</legend>
                 <div class="select-group">
-                    <select id="funcionario" name="funcionario">
+                    <select id="funcionario" name="funcionario" disabled>
                         <option value="">Selecione a filial primeiro</option>
                     </select>
                 </div>
@@ -119,27 +119,4 @@
             "ARTUR": ["LUCILENE", "FERNANDA"],
             "FLORIANO": ["MEIRE", "IOLANDA", "FERNANDA", "THACIANE", "SARA"],
             "JOTA": ["BRUNO", "VERA"],
-            "MODA": ["DAYANE", "LAYANE", "JOSY", "MARIA", "JÉSSICA", "ANA CLARA"],
-            "PONTO": ["SÔNIA", "SANDY", "PAULA", "MATHEUS", "PRISCILA", "DANIELA"]
-        };
-
-        document.querySelectorAll("input[name='filial']").forEach(radio => {
-            radio.addEventListener("change", function() {
-                const filialSelecionada = this.value;
-                const selectFuncionario = document.getElementById("funcionario");
-                selectFuncionario.innerHTML = ""; // Limpa as opções
-
-                // Adiciona os funcionários da filial selecionada
-                if (funcionariosPorFilial[filialSelecionada]) {
-                    funcionariosPorFilial[filialSelecionada].sort().forEach(nome => {
-                        const option = document.createElement("option");
-                        option.value = nome;
-                        option.textContent = nome;
-                        selectFuncionario.appendChild(option);
-                    });
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+            "MODA": ["
