@@ -83,7 +83,7 @@
 <body>
     <div class="form-container">
         <h2>CADASTRO DE FOLGA FUNCIONÁRIOS</h2>
-        <form id="form">
+        <form id="form" method="POST"> <!-- Alterado de GET para POST -->
             <fieldset class="form-group">
                 <legend>Filial</legend>
                 <div class="radio-group" id="filialGroup">
