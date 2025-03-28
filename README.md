@@ -3,86 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulário de Dados Pessoais</title>
-    <script>
-        function enviarFormulario() {
-            const formData = new FormData(document.getElementById("formulario"));
-            
-            fetch("https://script.google.com/macros/s/AKfycbyogC5qJr9fVW9KTgudFtj0-vhuuo-qfuBTcVAanafbW12kK3W9NsTnjnMtMJAyzUmE/exec", {
-                method: "POST",
-                body: formData,
-            })
-            .then(response => response.text())
-            .then(data => {
-                alert("Dados enviados com sucesso!");
-                document.getElementById("formulario").reset();  // Limpa os campos
-            })
-            .catch(error => alert("Erro ao enviar dados!"));
+    <title>Formulário</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
         }
-
-        function atualizarFuncionarios() {
-            const filial = document.getElementById("filial").value;
-            const funcionarioSelect = document.getElementById("funcionario");
-
-            // Limpa as opções atuais
-            funcionarioSelect.innerHTML = "<option value='' disabled selected>Selecione o Funcionário</option>";
-
-            let funcionarios = [];
-            
-            // Dependendo da filial, define os funcionários
-            if (filial === "ARTUR") {
-                funcionarios = ["FERNANDA", "LUCILENE"];
-            } else if (filial === "PONTO") {
-                funcionarios = ["SANDY", "MATHEUS"];
-            } else if (filial === "FLORIANO") {
-                funcionarios = ["JOÃO", "ANA"];
-            } else if (filial === "JOTA") {
-                funcionarios = ["MARCELO", "PAULA"];
-            } else if (filial === "MODA") {
-                funcionarios = ["CARLOS", "MARIANA"];
-            }
-
-            // Preenche a lista de funcionários de acordo com a filial
-            funcionarios.forEach(function(funcionario) {
-                const option = document.createElement("option");
-                option.value = funcionario;
-                option.textContent = funcionario;
-                funcionarioSelect.appendChild(option);
-            });
+        .form-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
         }
-    </script>
+        .form-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background: #673ab7;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background: #5a2ea5;
+        }
+    </style>
 </head>
 <body>
-    <h2>Formulário de Dados Pessoais</h2>
-    <form id="formulario" onsubmit="event.preventDefault(); enviarFormulario();">
-        <label>Filial:</label>
-        <select id="filial" name="filial" required onchange="atualizarFuncionarios()">
-            <option value="" disabled selected>Selecione a Filial</option>
-            <option value="ARTUR">ARTUR</option>
-            <option value="FLORIANO">FLORIANO</option>
-            <option value="JOTA">JOTA</option>
-            <option value="MODA">MODA</option>
-            <option value="PONTO">PONTO</option>
-        </select><br><br>
-
-        <label>Motivo da Folga:</label>
-        <select name="motivo_folga" required>
-            <option value="DOMINGO">DOMINGO</option>
-            <option value="FERIADO">FERIADO</option>
-        </select><br><br>
-
-        <label>Funcionário:</label>
-        <select id="funcionario" name="funcionario" required>
-            <option value="" disabled selected>Selecione o Funcionário</option>
-        </select><br><br>
-        
-        <label>Data de Nascimento:</label>
-        <input type="date" name="data_nascimento" required><br><br>
-        
-        <label>CPF:</label>
-        <input type="text" name="cpf" required><br><br>
-        
-        <button type="submit">Enviar</button>
-    </form>
+    <div class="form-container">
+        <h2>Formulário Simples</h2>
+        <form>
+            <div class="form-group">
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" name="nome" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="mensagem">Mensagem</label>
+                <textarea id="mensagem" name="mensagem" rows="4" required></textarea>
+            </div>
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
 </body>
 </html>
