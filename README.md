@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -8,13 +8,11 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f0ebf8;
-            margin: 0;
-            padding: 0;
             display: flex;
             justify-content: center;
-            align-items: flex-start;
-            min-height: 100vh;
-            overflow-y: auto; /* Garante rolagem se necessário */
+            align-items: center;
+            height: 100vh;
+            margin: 0;
         }
         .form-container {
             background: white;
@@ -23,15 +21,12 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             width: 100%;
             max-width: 600px;
-            overflow: auto; /* Permite rolagem dentro do formulário se necessário */
-            margin-top: 20px; /* Garante espaçamento do topo */
         }
         .form-container h2 {
             font-size: 24px;
             font-weight: bold;
             color: #202124;
             margin-bottom: 20px;
-            text-align: center;
         }
         .form-group {
             margin-bottom: 20px;
@@ -42,7 +37,7 @@
             color: #5f6368;
             margin-bottom: 10px;
         }
-        .radio-group label, .select-group select, input[type="date"] {
+        .radio-group label, .select-group select {
             display: block;
             font-size: 14px;
             padding: 10px;
@@ -52,9 +47,8 @@
             cursor: pointer;
             background: #fff;
             transition: all 0.3s;
-            width: 100%;
         }
-        .radio-group label:hover, .select-group select:hover, input[type="date"]:hover {
+        .radio-group label:hover, .select-group select:hover {
             background: #f1f3f4;
         }
         input[type="radio"] {
@@ -75,12 +69,17 @@
         button:hover {
             background: #5a2ea5;
         }
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
     <div class="form-container">
         <h2>CADASTRO DE FOLGA FUNCIONÁRIOS</h2>
-        <form>
+        <form id="form">
             <fieldset class="form-group">
                 <legend>Filial</legend>
                 <div class="radio-group" id="filialGroup">
@@ -90,14 +89,16 @@
                     <label><input type="radio" name="filial" value="MODA"> MODA</label>
                     <label><input type="radio" name="filial" value="PONTO"> PONTO</label>
                 </div>
+                <div class="error-message" id="filialError"></div>
             </fieldset>
             <fieldset class="form-group">
                 <legend>Funcionário</legend>
                 <div class="select-group">
-                    <select id="funcionario" name="funcionario" disabled>
+                    <select id="funcionario" name="funcionario">
                         <option value="">Selecione a filial primeiro</option>
                     </select>
                 </div>
+                <div class="error-message" id="funcionarioError"></div>
             </fieldset>
             <fieldset class="form-group">
                 <legend>Motivo da Folga</legend>
@@ -106,15 +107,17 @@
                     <label><input type="radio" name="motivo" value="FERIADO"> FERIADO</label>
                     <label><input type="radio" name="motivo" value="OUTROS"> OUTROS</label>
                 </div>
+                <div class="error-message" id="motivoError"></div>
             </fieldset>
             <fieldset class="form-group">
                 <legend>Data da Folga</legend>
-                <input type="date" name="data_folga" required>
+                <input type="date" id="dataFolga" name="dataFolga">
+                <div class="error-message" id="dataFolgaError"></div>
             </fieldset>
             <button type="submit">Enviar</button>
         </form>
     </div>
-
+    
     <script>
         const funcionariosPorFilial = {
             "ARTUR": ["LUCILENE", "FERNANDA"],
@@ -123,19 +126,15 @@
             "MODA": ["DAYANE", "LAYANE", "JOSY", "MARIA", "JÉSSICA", "ANA CLARA"],
             "PONTO": ["SÔNIA", "SANDY", "PAULA", "MATHEUS", "PRISCILA", "DANIELA"]
         };
-
+        
         document.querySelectorAll("input[name='filial']").forEach(radio => {
             radio.addEventListener("change", function() {
                 const filialSelecionada = this.value;
                 const selectFuncionario = document.getElementById("funcionario");
-                selectFuncionario.innerHTML = "<option value=''>Selecione o funcionário</option>"; // Reseta as opções
-
-                // Habilita o select de funcionários após selecionar a filial
-                selectFuncionario.disabled = false;
-
-                // Adiciona os funcionários da filial selecionada
+                selectFuncionario.innerHTML = "<option value=''>Selecione o funcionário</option>";
+                
                 if (funcionariosPorFilial[filialSelecionada]) {
-                    funcionariosPorFilial[filialSelecionada].sort().forEach(nome => {
+                    funcionariosPorFilial[filialSelecionada].forEach(nome => {
                         const option = document.createElement("option");
                         option.value = nome;
                         option.textContent = nome;
@@ -143,6 +142,56 @@
                     });
                 }
             });
+        });
+
+        // Validação do formulário
+        document.getElementById("form").addEventListener("submit", function(event) {
+            let valid = true;
+            let errorMessage = "";
+
+            // Validando Filial
+            const filialSelecionada = document.querySelector("input[name='filial']:checked");
+            if (!filialSelecionada) {
+                valid = false;
+                errorMessage = "Selecione a filial!";
+                document.getElementById("filialError").textContent = errorMessage;
+            } else {
+                document.getElementById("filialError").textContent = "";
+            }
+
+            // Validando Funcionário
+            const funcionarioSelecionado = document.getElementById("funcionario").value;
+            if (!funcionarioSelecionado) {
+                valid = false;
+                errorMessage = "Selecione o funcionário!";
+                document.getElementById("funcionarioError").textContent = errorMessage;
+            } else {
+                document.getElementById("funcionarioError").textContent = "";
+            }
+
+            // Validando Motivo
+            const motivoSelecionado = document.querySelector("input[name='motivo']:checked");
+            if (!motivoSelecionado) {
+                valid = false;
+                errorMessage = "Selecione o motivo da folga!";
+                document.getElementById("motivoError").textContent = errorMessage;
+            } else {
+                document.getElementById("motivoError").textContent = "";
+            }
+
+            // Validando Data
+            const dataFolga = document.getElementById("dataFolga").value;
+            if (!dataFolga) {
+                valid = false;
+                errorMessage = "Selecione a data da folga!";
+                document.getElementById("dataFolgaError").textContent = errorMessage;
+            } else {
+                document.getElementById("dataFolgaError").textContent = "";
+            }
+
+            if (!valid) {
+                event.preventDefault(); // Bloquear o envio do formulário
+            }
         });
     </script>
 </body>
