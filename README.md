@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulário</title>
+    <title>Cadastro de Folga Funcionários</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -25,6 +25,7 @@
         .form-container h2 {
             margin-bottom: 20px;
             color: #333;
+            text-align: center;
         }
         .form-group {
             margin-bottom: 15px;
@@ -40,6 +41,10 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 16px;
+        }
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
         }
         button {
             background: #673ab7;
@@ -58,19 +63,25 @@
 </head>
 <body>
     <div class="form-container">
-        <h2>Formulário Simples</h2>
+        <h2>CADASTRO DE FOLGA FUNCIONÁRIOS</h2>
         <form>
             <div class="form-group">
-                <label for="nome">Nome</label>
-                <input type="text" id="nome" name="nome" required>
+                <label>Filial</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="filial" value="ARTUR"> ARTUR</label>
+                    <label><input type="checkbox" name="filial" value="FLORIANO"> FLORIANO</label>
+                    <label><input type="checkbox" name="filial" value="JOTA"> JOTA</label>
+                    <label><input type="checkbox" name="filial" value="MODA"> MODA</label>
+                    <label><input type="checkbox" name="filial" value="PONTO"> PONTO</label>
+                </div>
             </div>
             <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="mensagem">Mensagem</label>
-                <textarea id="mensagem" name="mensagem" rows="4" required></textarea>
+                <label>Motivo da Folga</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="motivo" value="DOMINGO"> DOMINGO</label>
+                    <label><input type="checkbox" name="motivo" value="FERIADO"> FERIADO</label>
+                    <label><input type="checkbox" name="motivo" value="OUTROS"> OUTROS</label>
+                </div>
             </div>
             <button type="submit">Enviar</button>
         </form>
