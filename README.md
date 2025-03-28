@@ -131,6 +131,12 @@
     <img class="hering-logo" src="https://upload.wikimedia.org/wikipedia/commons/e/e1/Hering_logo.svg" alt="Hering Logo">
 
     <script>
+        // Função para pegar parâmetros da URL
+        function getUrlParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
         const funcionariosPorFilial = {
             "ARTUR": ["FERNANDA", "LUCILENE"],
             "FLORIANO": ["FERNANDA", "IOLANDA", "MEIRE", "SARA", "THACIANE"],
@@ -155,6 +161,32 @@
                     });
                 }
             });
+        });
+
+        // Preencher o formulário com os valores da URL
+        window.addEventListener("load", function() {
+            const filialParam = getUrlParameter('filial');
+            const motivoParam = getUrlParameter('motivo');
+
+            if (filialParam) {
+                document.querySelector(`input[name="filial"][value="${filialParam}"]`).checked = true;
+                const selectFuncionario = document.getElementById("funcionario");
+                selectFuncionario.innerHTML = "<option value=''>Selecione o Funcionário</option>";
+                
+                if (funcionariosPorFilial[filialParam]) {
+                    const funcionariosOrdenados = funcionariosPorFilial[filialParam].sort((a, b) => a.localeCompare(b, 'pt-BR'));
+                    funcionariosOrdenados.forEach(nome => {
+                        const option = document.createElement("option");
+                        option.value = nome;
+                        option.textContent = nome;
+                        selectFuncionario.appendChild(option);
+                    });
+                }
+            }
+
+            if (motivoParam) {
+                document.querySelector(`input[name="motivo"][value="${motivoParam}"]`).checked = true;
+            }
         });
     </script>
 </body>
