@@ -29,22 +29,26 @@
         }
         .form-group {
             margin-bottom: 15px;
+            padding: 15px;
+            border: 2px solid #673ab7;
+            border-radius: 8px;
+            background: #f3e5f5;
         }
-        label {
-            display: block;
-            margin-bottom: 5px;
+        .form-group label {
+            font-size: 18px;
             font-weight: bold;
+            color: #673ab7;
+            display: block;
+            margin-bottom: 10px;
+            text-align: center;
         }
-        input, textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        .checkbox-group {
+        .radio-group {
             display: flex;
             flex-direction: column;
+            align-items: center;
+        }
+        input[type="radio"] {
+            margin-right: 10px;
         }
         button {
             background: #673ab7;
@@ -55,6 +59,7 @@
             font-size: 16px;
             cursor: pointer;
             width: 100%;
+            margin-top: 10px;
         }
         button:hover {
             background: #5a2ea5;
@@ -67,20 +72,20 @@
         <form>
             <div class="form-group">
                 <label>Filial</label>
-                <div class="checkbox-group">
-                    <label><input type="checkbox" name="filial" value="ARTUR"> ARTUR</label>
-                    <label><input type="checkbox" name="filial" value="FLORIANO"> FLORIANO</label>
-                    <label><input type="checkbox" name="filial" value="JOTA"> JOTA</label>
-                    <label><input type="checkbox" name="filial" value="MODA"> MODA</label>
-                    <label><input type="checkbox" name="filial" value="PONTO"> PONTO</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="filial" value="ARTUR"> ARTUR</label>
+                    <label><input type="radio" name="filial" value="FLORIANO"> FLORIANO</label>
+                    <label><input type="radio" name="filial" value="JOTA"> JOTA</label>
+                    <label><input type="radio" name="filial" value="MODA"> MODA</label>
+                    <label><input type="radio" name="filial" value="PONTO"> PONTO</label>
                 </div>
             </div>
             <div class="form-group">
                 <label>Motivo da Folga</label>
-                <div class="checkbox-group">
-                    <label><input type="checkbox" name="motivo" value="DOMINGO"> DOMINGO</label>
-                    <label><input type="checkbox" name="motivo" value="FERIADO"> FERIADO</label>
-                    <label><input type="checkbox" name="motivo" value="OUTROS"> OUTROS</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="motivo" value="DOMINGO"> DOMINGO</label>
+                    <label><input type="radio" name="motivo" value="FERIADO"> FERIADO</label>
+                    <label><input type="radio" name="motivo" value="OUTROS"> OUTROS</label>
                 </div>
             </div>
             <button type="submit">Enviar</button>
