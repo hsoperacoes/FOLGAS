@@ -8,11 +8,13 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f0ebf8;
+            margin: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
+            overflow: hidden; /* Previne rolagem excessiva */
         }
         .form-container {
             background: white;
@@ -21,6 +23,7 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             width: 100%;
             max-width: 600px;
+            box-sizing: border-box; /* Garante que o padding não afete o tamanho */
         }
         .form-container h2 {
             font-size: 24px;
@@ -154,45 +157,4 @@
             if (!filialSelecionada) {
                 valid = false;
                 errorMessage = "Selecione a filial!";
-                document.getElementById("filialError").textContent = errorMessage;
-            } else {
-                document.getElementById("filialError").textContent = "";
-            }
-
-            // Validando Funcionário
-            const funcionarioSelecionado = document.getElementById("funcionario").value;
-            if (!funcionarioSelecionado) {
-                valid = false;
-                errorMessage = "Selecione o funcionário!";
-                document.getElementById("funcionarioError").textContent = errorMessage;
-            } else {
-                document.getElementById("funcionarioError").textContent = "";
-            }
-
-            // Validando Motivo
-            const motivoSelecionado = document.querySelector("input[name='motivo']:checked");
-            if (!motivoSelecionado) {
-                valid = false;
-                errorMessage = "Selecione o motivo da folga!";
-                document.getElementById("motivoError").textContent = errorMessage;
-            } else {
-                document.getElementById("motivoError").textContent = "";
-            }
-
-            // Validando Data
-            const dataFolga = document.getElementById("dataFolga").value;
-            if (!dataFolga) {
-                valid = false;
-                errorMessage = "Selecione a data da folga!";
-                document.getElementById("dataFolgaError").textContent = errorMessage;
-            } else {
-                document.getElementById("dataFolgaError").textContent = "";
-            }
-
-            if (!valid) {
-                event.preventDefault(); // Bloquear o envio do formulário
-            }
-        });
-    </script>
-</body>
-</html>
+                document.getElementById
