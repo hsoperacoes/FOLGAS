@@ -128,7 +128,7 @@
     </div>
     
     <!-- Logo da Hering -->
-    <img class="hering-logo" src="https://upload.wikimedia.org/wikipedia/commons/e/e1/Hering_logo.svg" alt="Hering Logo">
+    <img class="hering-logo" src="https://upload.wikimedia.org/wikipedia/commons/7/7d/Logo_Hering_2019.svg" alt="Hering Logo">
 
     <script>
         // Função para pegar parâmetros da URL
