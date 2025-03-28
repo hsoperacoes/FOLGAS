@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
+            background-color: #f0ebf8;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -16,36 +16,40 @@
         }
         .form-container {
             background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             width: 100%;
-            max-width: 500px;
+            max-width: 600px;
         }
         .form-container h2 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #202124;
             margin-bottom: 20px;
-            color: #333;
-            text-align: center;
         }
         .form-group {
-            margin-bottom: 15px;
-            padding: 15px;
-            border: 2px solid #673ab7;
-            border-radius: 8px;
-            background: #f3e5f5;
+            margin-bottom: 20px;
         }
-        .form-group label {
-            font-size: 18px;
+        .form-group legend {
+            font-size: 16px;
             font-weight: bold;
-            color: #673ab7;
-            display: block;
+            color: #5f6368;
             margin-bottom: 10px;
-            text-align: center;
         }
-        .radio-group {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        .radio-group label {
+            display: block;
+            font-size: 14px;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #dadce0;
+            margin-bottom: 8px;
+            cursor: pointer;
+            background: #fff;
+            transition: all 0.3s;
+        }
+        .radio-group label:hover {
+            background: #f1f3f4;
         }
         input[type="radio"] {
             margin-right: 10px;
@@ -54,12 +58,13 @@
             background: #673ab7;
             color: white;
             border: none;
-            padding: 10px;
+            padding: 12px;
             border-radius: 5px;
             font-size: 16px;
             cursor: pointer;
             width: 100%;
             margin-top: 10px;
+            transition: background 0.3s;
         }
         button:hover {
             background: #5a2ea5;
@@ -70,8 +75,8 @@
     <div class="form-container">
         <h2>CADASTRO DE FOLGA FUNCIONÁRIOS</h2>
         <form>
-            <div class="form-group">
-                <label>Filial</label>
+            <fieldset class="form-group">
+                <legend>Filial</legend>
                 <div class="radio-group">
                     <label><input type="radio" name="filial" value="ARTUR"> ARTUR</label>
                     <label><input type="radio" name="filial" value="FLORIANO"> FLORIANO</label>
@@ -79,15 +84,15 @@
                     <label><input type="radio" name="filial" value="MODA"> MODA</label>
                     <label><input type="radio" name="filial" value="PONTO"> PONTO</label>
                 </div>
-            </div>
-            <div class="form-group">
-                <label>Motivo da Folga</label>
+            </fieldset>
+            <fieldset class="form-group">
+                <legend>Motivo da Folga</legend>
                 <div class="radio-group">
                     <label><input type="radio" name="motivo" value="DOMINGO"> DOMINGO</label>
                     <label><input type="radio" name="motivo" value="FERIADO"> FERIADO</label>
                     <label><input type="radio" name="motivo" value="OUTROS"> OUTROS</label>
                 </div>
-            </div>
+            </fieldset>
             <button type="submit">Enviar</button>
         </form>
     </div>
