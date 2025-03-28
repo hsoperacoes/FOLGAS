@@ -13,6 +13,8 @@
             align-items: center;
             height: 100vh;
             margin: 0;
+            padding: 0;
+            position: relative;
         }
         .form-container {
             background: white;
@@ -21,12 +23,14 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             width: 100%;
             max-width: 600px;
+            margin-top: 20px;
         }
         .form-container h2 {
             font-size: 24px;
             font-weight: bold;
             color: #202124;
             margin-bottom: 20px;
+            text-align: center;
         }
         .form-group {
             margin-bottom: 20px;
@@ -68,6 +72,13 @@
         }
         button:hover {
             background: #5a2ea5;
+        }
+        .hering-logo {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 60px;
+            height: auto;
         }
     </style>
 </head>
@@ -115,6 +126,8 @@
         </form>
     </div>
     
+    <img class="hering-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Hering_logo.svg/1200px-Hering_logo.svg.png" alt="Hering Logo">
+
     <script>
         const funcionariosPorFilial = {
             "ARTUR": ["FERNANDA", "LUCILENE"],
