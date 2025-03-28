@@ -12,9 +12,9 @@
             padding: 0;
             display: flex;
             justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden; /* Previne rolagem excessiva */
+            align-items: flex-start;
+            min-height: 100vh; /* Garante que a altura mínima ocupe toda a tela */
+            overflow-y: auto; /* Permite rolagem vertical */
         }
         .form-container {
             background: white;
@@ -24,6 +24,7 @@
             width: 100%;
             max-width: 600px;
             box-sizing: border-box; /* Garante que o padding não afete o tamanho */
+            overflow: hidden;
         }
         .form-container h2 {
             font-size: 24px;
