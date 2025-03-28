@@ -30,8 +30,11 @@
             <option value="PONTO">PONTO</option>
         </select><br><br>
         
-        <label>E-mail:</label>
-        <input type="email" name="email" required><br><br>
+        <label>Motivo da Folga:</label>
+        <select name="motivo_folga" required>
+            <option value="DOMINGO">DOMINGO</option>
+            <option value="FERIADO">FERIADO</option>
+        </select><br><br>
         
         <label>Telefone:</label>
         <input type="tel" name="telefone" required><br><br>
