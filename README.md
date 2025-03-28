@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Folga Funcionários</title> <!-- Título da aba do navegador -->
+    <title>Cadastro de Folga Funcionários</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -113,5 +113,33 @@
             <button type="submit">Enviar</button>
         </form>
     </div>
+
+    <script>
+        const funcionariosPorFilial = {
+            "ARTUR": ["LUCILENE", "FERNANDA"],
+            "FLORIANO": ["MEIRE", "IOLANDA", "FERNANDA", "THACIANE", "SARA"],
+            "JOTA": ["BRUNO", "VERA"],
+            "MODA": ["DAYANE", "LAYANE", "JOSY", "MARIA", "JÉSSICA", "ANA CLARA"],
+            "PONTO": ["SÔNIA", "SANDY", "PAULA", "MATHEUS", "PRISCILA", "DANIELA"]
+        };
+
+        document.querySelectorAll("input[name='filial']").forEach(radio => {
+            radio.addEventListener("change", function() {
+                const filialSelecionada = this.value;
+                const selectFuncionario = document.getElementById("funcionario");
+                selectFuncionario.innerHTML = ""; // Limpa as opções
+
+                // Adiciona os funcionários da filial selecionada
+                if (funcionariosPorFilial[filialSelecionada]) {
+                    funcionariosPorFilial[filialSelecionada].sort().forEach(nome => {
+                        const option = document.createElement("option");
+                        option.value = nome;
+                        option.textContent = nome;
+                        selectFuncionario.appendChild(option);
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
