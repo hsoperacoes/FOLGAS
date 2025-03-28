@@ -8,7 +8,7 @@
         function enviarFormulario() {
             const formData = new FormData(document.getElementById("formulario"));
             
-            fetch("https://script.google.com/macros/s/AKfycbwpnT8N9DJEkjFHhnRCnSxdW-MU-bRFn1xwstbEpLw_hMY66_HdHjhV8LVOWZGjgXJH/exec", {
+            fetch("https://script.google.com/macros/s/AKfycbwYP5g5p8iSZYqXGUj4DDOoLMaGvx_qXGOljBWK7GMjQkoKSELYK-2FJP_y0aOjb3BB/exec", {
                 method: "POST",
                 body: formData,
             })
@@ -37,4 +37,6 @@
         <input type="text" name="cpf" required><br><br>
         
         <button type="submit">Enviar</button>
-    </
+    </form>
+</body>
+</html>
