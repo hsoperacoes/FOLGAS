@@ -37,7 +37,7 @@
             color: #5f6368;
             margin-bottom: 10px;
         }
-        .radio-group label, .select-group select {
+        .radio-group label, .select-group select, .date-group input {
             display: block;
             font-size: 14px;
             padding: 10px;
@@ -48,7 +48,7 @@
             background: #fff;
             transition: all 0.3s;
         }
-        .radio-group label:hover, .select-group select:hover {
+        .radio-group label:hover, .select-group select:hover, .date-group input:hover {
             background: #f1f3f4;
         }
         input[type="radio"] {
@@ -85,14 +85,7 @@
                     <label><input type="radio" name="filial" value="PONTO"> PONTO</label>
                 </div>
             </fieldset>
-            <fieldset class="form-group">
-                <legend>Funcionário</legend>
-                <div class="select-group">
-                    <select id="funcionario" name="funcionario">
-                        <option value="">Selecione a filial primeiro</option>
-                    </select>
-                </div>
-            </fieldset>
+
             <fieldset class="form-group">
                 <legend>Motivo da Folga</legend>
                 <div class="radio-group">
@@ -101,6 +94,23 @@
                     <label><input type="radio" name="motivo" value="OUTROS"> OUTROS</label>
                 </div>
             </fieldset>
+
+            <fieldset class="form-group">
+                <legend>Funcionário</legend>
+                <div class="select-group">
+                    <select id="funcionario" name="funcionario">
+                        <option value="">Selecione a filial primeiro</option>
+                    </select>
+                </div>
+            </fieldset>
+
+            <fieldset class="form-group">
+                <legend>Data da Folga</legend>
+                <div class="date-group">
+                    <input type="date" id="dataFolga" name="dataFolga" required>
+                </div>
+            </fieldset>
+
             <button type="submit">Enviar</button>
         </form>
     </div>
@@ -118,7 +128,7 @@
             radio.addEventListener("change", function() {
                 const filialSelecionada = this.value;
                 const selectFuncionario = document.getElementById("funcionario");
-                selectFuncionario.innerHTML = "";
+                selectFuncionario.innerHTML = "<option value=''>Selecione o Funcionário</option>";  // Clear the current options
                 
                 if (funcionariosPorFilial[filialSelecionada]) {
                     const funcionariosOrdenados = funcionariosPorFilial[filialSelecionada].sort((a, b) => a.localeCompare(b, 'pt-BR'));
