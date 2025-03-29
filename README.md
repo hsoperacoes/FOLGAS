@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -122,80 +123,25 @@
     </div>
     
     <script>
-        const funcionariosPorFilial = {
-            "ARTUR": ["LUCILENE", "FERNANDA"],
-            "FLORIANO": ["MEIRE", "IOLANDA", "FERNANDA", "THACIANE", "SARA"],
-            "JOTA": ["BRUNO", "VERA"],
-            "MODA": ["DAYANE", "LAYANE", "JOSY", "MARIA", "JÉSSICA", "ANA CLARA"],
-            "PONTO": ["SÔNIA", "SANDY", "PAULA", "MATHEUS", "PRISCILA", "DANIELA"]
-        };
-        
-        document.querySelectorAll("input[name='filial']").forEach(radio => {
-            radio.addEventListener("change", function() {
-                const filialSelecionada = this.value;
-                const selectFuncionario = document.getElementById("funcionario");
-                selectFuncionario.innerHTML = "<option value=''>Selecione o funcionário</option>";
-                
-                if (funcionariosPorFilial[filialSelecionada]) {
-                    funcionariosPorFilial[filialSelecionada].forEach(nome => {
-                        const option = document.createElement("option");
-                        option.value = nome;
-                        option.textContent = nome;
-                        selectFuncionario.appendChild(option);
-                    });
-                }
-            });
+    document.getElementById("form").addEventListener("submit", function(event) {
+        event.preventDefault(); // Impede que a página seja recarregada
+
+        let formData = new FormData(this); // Captura os dados do formulário
+
+        fetch(this.action, {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            alert("Folga cadastrada com sucesso!"); // Exibe uma mensagem
+            document.getElementById("form").reset(); // Limpa o formulário
+        })
+        .catch(error => {
+            alert("Erro ao enviar os dados!");
+            console.error("Erro:", error);
         });
-
-        // Validação do formulário
-        document.getElementById("form").addEventListener("submit", function(event) {
-            let valid = true;
-            let errorMessage = "";
-
-            // Validando Filial
-            const filialSelecionada = document.querySelector("input[name='filial']:checked");
-            if (!filialSelecionada) {
-                valid = false;
-                errorMessage = "Selecione a filial!";
-                document.getElementById("filialError").textContent = errorMessage;
-            } else {
-                document.getElementById("filialError").textContent = "";
-            }
-
-            // Validando Funcionário
-            const funcionarioSelecionado = document.getElementById("funcionario").value;
-            if (!funcionarioSelecionado) {
-                valid = false;
-                errorMessage = "Selecione o funcionário!";
-                document.getElementById("funcionarioError").textContent = errorMessage;
-            } else {
-                document.getElementById("funcionarioError").textContent = "";
-            }
-
-            // Validando Motivo
-            const motivoSelecionado = document.querySelector("input[name='motivo']:checked");
-            if (!motivoSelecionado) {
-                valid = false;
-                errorMessage = "Selecione o motivo da folga!";
-                document.getElementById("motivoError").textContent = errorMessage;
-            } else {
-                document.getElementById("motivoError").textContent = "";
-            }
-
-            // Validando Data
-            const dataFolga = document.getElementById("dataFolga").value;
-            if (!dataFolga) {
-                valid = false;
-                errorMessage = "Selecione a data da folga!";
-                document.getElementById("dataFolgaError").textContent = errorMessage;
-            } else {
-                document.getElementById("dataFolgaError").textContent = "";
-            }
-
-            if (!valid) {
-                event.preventDefault(); // Bloquear o envio do formulário
-            }
-        });
+    });
     </script>
 </body>
 </html>
