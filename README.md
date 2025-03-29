@@ -84,6 +84,7 @@
     <div class="form-container">
         <h2>CADASTRO DE FOLGA FUNCIONÁRIOS</h2>
         <form id="form" method="POST" action="https://script.google.com/macros/s/AKfycbwh-YUwL2o3_i-bfcV9RMzLcoI98vyyGwEXf4LHlG5KJ59gIAlUe1_VVlFQMBqU6PwR/exec">
+            
             <fieldset class="form-group">
                 <legend>Filial</legend>
                 <div class="radio-group" id="filialGroup">
@@ -95,6 +96,7 @@
                 </div>
                 <div class="error-message" id="filialError"></div>
             </fieldset>
+
             <fieldset class="form-group">
                 <legend>Funcionário</legend>
                 <div class="select-group">
@@ -104,6 +106,7 @@
                 </div>
                 <div class="error-message" id="funcionarioError"></div>
             </fieldset>
+
             <fieldset class="form-group">
                 <legend>Motivo da Folga</legend>
                 <div class="radio-group">
@@ -113,11 +116,13 @@
                 </div>
                 <div class="error-message" id="motivoError"></div>
             </fieldset>
+
             <fieldset class="form-group">
                 <legend>Data da Folga</legend>
                 <input type="date" id="dataFolga" name="dataFolga">
                 <div class="error-message" id="dataFolgaError"></div>
             </fieldset>
+
             <button type="submit">Enviar</button>
         </form>
     </div>
@@ -125,23 +130,33 @@
     <script>
     // Lógica para atualizar a lista de funcionários com base na filial
     document.getElementById('filialGroup').addEventListener('change', function() {
-        var filial = document.querySelector('input[name="filial"]:checked');
+        var filialSelecionada = document.querySelector('input[name="filial"]:checked');
         var funcionarioSelect = document.getElementById('funcionario');
 
-        if (filial) {
-            var funcionarios = getFuncionarios(filial.value);
-            funcionarioSelect.innerHTML = ""; // Limpa a lista atual
+        funcionarioSelect.innerHTML = ""; // Limpa a lista
+
+        if (filialSelecionada) {
+            var funcionarios = getFuncionarios(filialSelecionada.value);
+            var optionInicial = document.createElement("option");
+            optionInicial.value = "";
+            optionInicial.textContent = "Selecione um funcionário";
+            funcionarioSelect.appendChild(optionInicial);
+
             funcionarios.forEach(function(funcionario) {
                 var option = document.createElement("option");
                 option.value = funcionario;
                 option.textContent = funcionario;
                 funcionarioSelect.appendChild(option);
             });
+        } else {
+            var optionInicial = document.createElement("option");
+            optionInicial.value = "";
+            optionInicial.textContent = "Selecione a filial primeiro";
+            funcionarioSelect.appendChild(optionInicial);
         }
     });
 
     function getFuncionarios(filial) {
-        // Exemplo de dados de funcionários para cada filial
         var funcionarios = {
             "ARTUR": ["LUCILENE", "JOÃO", "MARIA"],
             "FLORIANO": ["ANA", "FERNANDO", "JULIANA"],
@@ -153,7 +168,7 @@
     }
 
     document.getElementById("form").addEventListener("submit", function(event) {
-        event.preventDefault(); // Impede o envio padrão do formulário
+        event.preventDefault(); // Impede o envio padrão
 
         let formData = new FormData(this);
 
@@ -164,7 +179,8 @@
         .then(response => response.text())
         .then(data => {
             alert("Folga cadastrada com sucesso!");
-            document.getElementById("form").reset(); // Limpa o formulário
+            document.getElementById("form").reset();
+            document.getElementById("funcionario").innerHTML = '<option value="">Selecione a filial primeiro</option>';
         })
         .catch(error => {
             alert("Erro ao enviar os dados!");
