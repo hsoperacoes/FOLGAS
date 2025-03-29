@@ -26,12 +26,6 @@
             box-sizing: border-box;
             overflow: hidden;
         }
-        .form-container h2 {
-            font-size: 24px;
-            font-weight: bold;
-            color: #202124;
-            margin-bottom: 20px;
-        }
         .form-group {
             margin-bottom: 20px;
         }
@@ -52,12 +46,6 @@
             background: #fff;
             transition: all 0.3s;
         }
-        .radio-group label:hover, .select-group select:hover {
-            background: #f1f3f4;
-        }
-        input[type="radio"] {
-            margin-right: 10px;
-        }
         button {
             background: #673ab7;
             color: white;
@@ -70,21 +58,12 @@
             margin-top: 10px;
             transition: background 0.3s;
         }
-        button:hover {
-            background: #5a2ea5;
-        }
-        .error-message {
-            color: red;
-            font-size: 14px;
-            margin-top: 10px;
-        }
     </style>
 </head>
 <body>
     <div class="form-container">
         <h2>CADASTRO DE FOLGA FUNCIONÁRIOS</h2>
         <form id="form" method="POST" action="https://script.google.com/macros/s/AKfycbwh-YUwL2o3_i-bfcV9RMzLcoI98vyyGwEXf4LHlG5KJ59gIAlUe1_VVlFQMBqU6PwR/exec">
-            
             <fieldset class="form-group">
                 <legend>Filial</legend>
                 <div class="radio-group" id="filialGroup">
@@ -94,9 +73,7 @@
                     <label><input type="radio" name="filial" value="MODA"> MODA</label>
                     <label><input type="radio" name="filial" value="PONTO"> PONTO</label>
                 </div>
-                <div class="error-message" id="filialError"></div>
             </fieldset>
-
             <fieldset class="form-group">
                 <legend>Funcionário</legend>
                 <div class="select-group">
@@ -104,9 +81,7 @@
                         <option value="">Selecione a filial primeiro</option>
                     </select>
                 </div>
-                <div class="error-message" id="funcionarioError"></div>
             </fieldset>
-
             <fieldset class="form-group">
                 <legend>Motivo da Folga</legend>
                 <div class="radio-group">
@@ -114,79 +89,70 @@
                     <label><input type="radio" name="motivo" value="FERIADO"> FERIADO</label>
                     <label><input type="radio" name="motivo" value="OUTROS"> OUTROS</label>
                 </div>
-                <div class="error-message" id="motivoError"></div>
             </fieldset>
-
             <fieldset class="form-group">
                 <legend>Data da Folga</legend>
                 <input type="date" id="dataFolga" name="dataFolga">
-                <div class="error-message" id="dataFolgaError"></div>
             </fieldset>
-
             <button type="submit">Enviar</button>
         </form>
     </div>
-
+    
     <script>
-    // Lógica para atualizar a lista de funcionários com base na filial
-    document.getElementById('filialGroup').addEventListener('change', function() {
-        var filialSelecionada = document.querySelector('input[name="filial"]:checked');
-        var funcionarioSelect = document.getElementById('funcionario');
-
-        funcionarioSelect.innerHTML = ""; // Limpa a lista
-
-        if (filialSelecionada) {
-            var funcionarios = getFuncionarios(filialSelecionada.value);
-            var optionInicial = document.createElement("option");
-            optionInicial.value = "";
-            optionInicial.textContent = "Selecione um funcionário";
-            funcionarioSelect.appendChild(optionInicial);
-
-            funcionarios.forEach(function(funcionario) {
-                var option = document.createElement("option");
-                option.value = funcionario;
-                option.textContent = funcionario;
-                funcionarioSelect.appendChild(option);
-            });
-        } else {
-            var optionInicial = document.createElement("option");
-            optionInicial.value = "";
-            optionInicial.textContent = "Selecione a filial primeiro";
-            funcionarioSelect.appendChild(optionInicial);
-        }
-    });
-
-    function getFuncionarios(filial) {
-        var funcionarios = {
-            "ARTUR": ["LUCILENE", "JOÃO", "MARIA"],
-            "FLORIANO": ["ANA", "FERNANDO", "JULIANA"],
-            "JOTA": ["CARLOS", "PAULA", "MARCOS"],
-            "MODA": ["FABRÍCIO", "BÁRBARA", "PEDRO"],
-            "PONTO": ["SILVIA", "VÍTOR", "LÍVIA"]
+        const funcionariosPorFilial = {
+            "ARTUR": ["LUCILENE", "FERNANDA"],
+            "FLORIANO": ["MEIRE", "IOLANDA", "FERNANDA", "THACIANE", "SARA"],
+            "JOTA": ["BRUNO", "VERA"],
+            "MODA": ["DAYANE", "LAYANE", "JOSY", "MARIA", "JÉSSICA", "ANA CLARA"],
+            "PONTO": ["SÔNIA", "SANDY", "PAULA", "MATHEUS", "PRISCILA", "DANIELA"]
         };
-        return funcionarios[filial] || [];
-    }
 
-    document.getElementById("form").addEventListener("submit", function(event) {
-        event.preventDefault(); // Impede o envio padrão
+        document.getElementById('filialGroup').addEventListener('change', function() {
+            var filialSelecionada = document.querySelector('input[name="filial"]:checked');
+            var funcionarioSelect = document.getElementById('funcionario');
 
-        let formData = new FormData(this);
+            funcionarioSelect.innerHTML = "";
 
-        fetch(this.action, {
-            method: "POST",
-            body: formData
-        })
-        .then(response => response.text())
-        .then(data => {
-            alert("Folga cadastrada com sucesso!");
-            document.getElementById("form").reset();
-            document.getElementById("funcionario").innerHTML = '<option value="">Selecione a filial primeiro</option>';
-        })
-        .catch(error => {
-            alert("Erro ao enviar os dados!");
-            console.error("Erro:", error);
+            if (filialSelecionada) {
+                var optionInicial = document.createElement("option");
+                optionInicial.value = "";
+                optionInicial.textContent = "Selecione um funcionário";
+                funcionarioSelect.appendChild(optionInicial);
+                
+                funcionariosPorFilial[filialSelecionada.value].forEach(function(funcionario) {
+                    var option = document.createElement("option");
+                    option.value = funcionario;
+                    option.textContent = funcionario;
+                    funcionarioSelect.appendChild(option);
+                });
+            } else {
+                var optionInicial = document.createElement("option");
+                optionInicial.value = "";
+                optionInicial.textContent = "Selecione a filial primeiro";
+                funcionarioSelect.appendChild(optionInicial);
+            }
         });
-    });
+
+        document.getElementById("form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let formData = new FormData(this);
+
+            fetch(this.action, {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert("Folga cadastrada com sucesso!");
+                document.getElementById("form").reset();
+                document.getElementById("funcionario").innerHTML = '<option value="">Selecione a filial primeiro</option>';
+            })
+            .catch(error => {
+                alert("Erro ao enviar os dados!");
+                console.error("Erro:", error);
+            });
+        });
     </script>
 </body>
 </html>
