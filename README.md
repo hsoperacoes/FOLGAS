@@ -121,12 +121,41 @@
             <button type="submit">Enviar</button>
         </form>
     </div>
-    
-    <script>
-    document.getElementById("form").addEventListener("submit", function(event) {
-        event.preventDefault(); // Impede que a página seja recarregada
 
-        let formData = new FormData(this); // Captura os dados do formulário
+    <script>
+    // Lógica para atualizar a lista de funcionários com base na filial
+    document.getElementById('filialGroup').addEventListener('change', function() {
+        var filial = document.querySelector('input[name="filial"]:checked');
+        var funcionarioSelect = document.getElementById('funcionario');
+
+        if (filial) {
+            var funcionarios = getFuncionarios(filial.value);
+            funcionarioSelect.innerHTML = ""; // Limpa a lista atual
+            funcionarios.forEach(function(funcionario) {
+                var option = document.createElement("option");
+                option.value = funcionario;
+                option.textContent = funcionario;
+                funcionarioSelect.appendChild(option);
+            });
+        }
+    });
+
+    function getFuncionarios(filial) {
+        // Exemplo de dados de funcionários para cada filial
+        var funcionarios = {
+            "ARTUR": ["LUCILENE", "JOÃO", "MARIA"],
+            "FLORIANO": ["ANA", "FERNANDO", "JULIANA"],
+            "JOTA": ["CARLOS", "PAULA", "MARCOS"],
+            "MODA": ["FABRÍCIO", "BÁRBARA", "PEDRO"],
+            "PONTO": ["SILVIA", "VÍTOR", "LÍVIA"]
+        };
+        return funcionarios[filial] || [];
+    }
+
+    document.getElementById("form").addEventListener("submit", function(event) {
+        event.preventDefault(); // Impede o envio padrão do formulário
+
+        let formData = new FormData(this);
 
         fetch(this.action, {
             method: "POST",
@@ -134,7 +163,7 @@
         })
         .then(response => response.text())
         .then(data => {
-            alert("Folga cadastrada com sucesso!"); // Exibe uma mensagem
+            alert("Folga cadastrada com sucesso!");
             document.getElementById("form").reset(); // Limpa o formulário
         })
         .catch(error => {
