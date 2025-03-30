@@ -57,6 +57,9 @@
             margin-top: 10px;
             transition: background 0.3s;
         }
+        #motivoOutros {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -88,6 +91,10 @@
                     <label><input type="radio" name="motivo" value="FERIADO"> FERIADO</label>
                     <label><input type="radio" name="motivo" value="OUTROS"> OUTROS</label>
                 </div>
+            </fieldset>
+            <fieldset class="form-group" id="motivoOutros">
+                <legend>Especificar o Motivo</legend>
+                <input type="text" name="outrosMotivo" placeholder="Escreva o motivo">
             </fieldset>
             <fieldset class="form-group">
                 <legend>Data da Folga</legend>
@@ -130,6 +137,26 @@
                 optionInicial.textContent = "Selecione a filial primeiro";
                 funcionarioSelect.appendChild(optionInicial);
             }
+        });
+
+        document.querySelectorAll('input[name="motivo"]').forEach(function(radio) {
+            radio.addEventListener('change', function() {
+                const dataFolgaInput = document.getElementById("dataFolga");
+                const motivoOutrosField = document.getElementById("motivoOutros");
+
+                if (this.value === "DOMINGO") {
+                    // Limitar a data até 7 dias
+                    const hoje = new Date();
+                    const seteDiasDepois = new Date(hoje);
+                    seteDiasDepois.setDate(hoje.getDate() + 7);
+                    dataFolgaInput.max = seteDiasDepois.toISOString().split('T')[0]; // Limita a data até 7 dias
+                } else if (this.value === "OUTROS") {
+                    motivoOutrosField.style.display = "block"; // Exibe o campo para o motivo "OUTROS"
+                } else {
+                    motivoOutrosField.style.display = "none"; // Oculta o campo para o motivo "OUTROS"
+                    dataFolgaInput.removeAttribute("max"); // Remove a limitação de data se não for "DOMINGO"
+                }
+            });
         });
 
         document.getElementById("form").addEventListener("submit", function(event) {
