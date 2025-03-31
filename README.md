@@ -124,24 +124,24 @@
             radio.addEventListener('change', function() {
                 const dataFolgaInput = document.getElementById("dataFolga");
                 const motivoOutrosField = document.getElementById("motivoOutros");
+                const dataTrabalhoInput = document.getElementById("dataTrabalho");
 
-                let dataTrabalho = document.getElementById("dataTrabalho").value;
-                if (!dataTrabalho) {
+                if (!dataTrabalhoInput.value) {
                     alert("Selecione primeiro a Data de Trabalho!");
                     this.checked = false;
                     return;
                 }
 
-                let trabalhoDate = new Date(dataTrabalho);
-                let maxDate = new Date(trabalhoDate);
-                
+                let dataTrabalho = new Date(dataTrabalhoInput.value);
+                let maxDate = new Date(dataTrabalho);
+
                 if (this.value === "DOMINGO") {
-                    maxDate.setDate(trabalhoDate.getDate() + 7);
+                    maxDate.setDate(dataTrabalho.getDate() + 7);
                 } else if (this.value === "FERIADO") {
-                    maxDate.setDate(trabalhoDate.getDate() + 30);
+                    maxDate.setDate(dataTrabalho.getDate() + 30);
                 }
 
-                dataFolgaInput.min = trabalhoDate.toISOString().split('T')[0];
+                dataFolgaInput.min = dataTrabalho.toISOString().split('T')[0];
                 dataFolgaInput.max = maxDate.toISOString().split('T')[0];
 
                 motivoOutrosField.style.display = this.value === "OUTROS" ? "block" : "none";
