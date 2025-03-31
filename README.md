@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -34,6 +34,17 @@
             color: #5f6368;
             margin-bottom: 10px;
         }
+        .radio-group label, .select-group select {
+            display: block;
+            font-size: 14px;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #dadce0;
+            margin-bottom: 8px;
+            cursor: pointer;
+            background: #fff;
+            transition: all 0.3s;
+        }
         button {
             background: #673ab7;
             color: white;
@@ -49,35 +60,35 @@
         #motivoOutros {
             display: none;
         }
+        #filialGroup label, #motivoGroup label, #funcionarioGroup label {
+            display: block;
+            margin-bottom: 8px;
+        }
     </style>
 </head>
 <body>
     <div class="form-container">
         <h2>CADASTRO DE FOLGA FUNCIONÁRIOS</h2>
         <form id="form" method="POST" action="https://script.google.com/macros/s/AKfycbwh-YUwL2o3_i-bfcV9RMzLcoI98vyyGwEXf4LHlG5KJ59gIAlUe1_VVlFQMBqU6PwR/exec">
-            <fieldset class="form-group">
+            <fieldset class="form-group" id="filialGroup">
                 <legend>Filial</legend>
-                <div id="filialGroup">
-                    <label><input type="radio" name="filial" value="ARTUR"> ARTUR</label>
-                    <label><input type="radio" name="filial" value="FLORIANO"> FLORIANO</label>
-                    <label><input type="radio" name="filial" value="JOTA"> JOTA</label>
-                    <label><input type="radio" name="filial" value="MODA"> MODA</label>
-                    <label><input type="radio" name="filial" value="PONTO"> PONTO</label>
-                </div>
+                <label><input type="radio" name="filial" value="ARTUR"> ARTUR</label>
+                <label><input type="radio" name="filial" value="FLORIANO"> FLORIANO</label>
+                <label><input type="radio" name="filial" value="JOTA"> JOTA</label>
+                <label><input type="radio" name="filial" value="MODA"> MODA</label>
+                <label><input type="radio" name="filial" value="PONTO"> PONTO</label>
             </fieldset>
-            <fieldset class="form-group">
+            <fieldset class="form-group" id="funcionarioGroup">
                 <legend>Funcionário</legend>
                 <select id="funcionario" name="funcionario">
                     <option value="">Selecione a filial primeiro</option>
                 </select>
             </fieldset>
-            <fieldset class="form-group">
+            <fieldset class="form-group" id="motivoGroup">
                 <legend>Motivo da Folga</legend>
-                <div>
-                    <label><input type="radio" name="motivo" value="DOMINGO"> DOMINGO</label>
-                    <label><input type="radio" name="motivo" value="FERIADO"> FERIADO</label>
-                    <label><input type="radio" name="motivo" value="OUTROS"> OUTROS</label>
-                </div>
+                <label><input type="radio" name="motivo" value="DOMINGO"> DOMINGO</label>
+                <label><input type="radio" name="motivo" value="FERIADO"> FERIADO</label>
+                <label><input type="radio" name="motivo" value="OUTROS"> OUTROS</label>
             </fieldset>
             <fieldset class="form-group" id="motivoOutros">
                 <legend>Especificar o Motivo</legend>
