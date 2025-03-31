@@ -1,3 +1,4 @@
+
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -23,7 +24,6 @@
             width: 100%;
             max-width: 600px;
             box-sizing: border-box;
-            overflow: hidden;
         }
         .form-group {
             margin-bottom: 20px;
