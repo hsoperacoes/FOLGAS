@@ -84,6 +84,10 @@
                     <option value="">Selecione a filial primeiro</option>
                 </select>
             </fieldset>
+            <fieldset class="form-group">
+                <legend>DIA TRABALHADO</legend>
+                <input type="date" id="dataTrabalho" name="dataTrabalho">
+            </fieldset>
             <fieldset class="form-group" id="motivoGroup">
                 <legend>Motivo da Folga</legend>
                 <label><input type="radio" name="motivo" value="DOMINGO"> DOMINGO</label>
@@ -93,10 +97,6 @@
             <fieldset class="form-group" id="motivoOutros">
                 <legend>Especificar o Motivo</legend>
                 <input type="text" name="outrosMotivo" placeholder="Escreva o motivo">
-            </fieldset>
-            <fieldset class="form-group">
-                <legend>Data de Trabalho</legend>
-                <input type="date" id="dataTrabalho" name="dataTrabalho">
             </fieldset>
             <fieldset class="form-group">
                 <legend>Data da Folga</legend>
