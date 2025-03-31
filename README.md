@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -34,17 +35,6 @@
             color: #5f6368;
             margin-bottom: 10px;
         }
-        .radio-group label, .select-group select {
-            display: block;
-            font-size: 14px;
-            padding: 10px;
-            border-radius: 4px;
-            border: 1px solid #dadce0;
-            margin-bottom: 8px;
-            cursor: pointer;
-            background: #fff;
-            transition: all 0.3s;
-        }
         button {
             background: #673ab7;
             color: white;
@@ -68,7 +58,7 @@
         <form id="form" method="POST" action="https://script.google.com/macros/s/AKfycbwh-YUwL2o3_i-bfcV9RMzLcoI98vyyGwEXf4LHlG5KJ59gIAlUe1_VVlFQMBqU6PwR/exec">
             <fieldset class="form-group">
                 <legend>Filial</legend>
-                <div class="radio-group" id="filialGroup">
+                <div id="filialGroup">
                     <label><input type="radio" name="filial" value="ARTUR"> ARTUR</label>
                     <label><input type="radio" name="filial" value="FLORIANO"> FLORIANO</label>
                     <label><input type="radio" name="filial" value="JOTA"> JOTA</label>
@@ -78,15 +68,13 @@
             </fieldset>
             <fieldset class="form-group">
                 <legend>Funcionário</legend>
-                <div class="select-group">
-                    <select id="funcionario" name="funcionario">
-                        <option value="">Selecione a filial primeiro</option>
-                    </select>
-                </div>
+                <select id="funcionario" name="funcionario">
+                    <option value="">Selecione a filial primeiro</option>
+                </select>
             </fieldset>
             <fieldset class="form-group">
                 <legend>Motivo da Folga</legend>
-                <div class="radio-group">
+                <div>
                     <label><input type="radio" name="motivo" value="DOMINGO"> DOMINGO</label>
                     <label><input type="radio" name="motivo" value="FERIADO"> FERIADO</label>
                     <label><input type="radio" name="motivo" value="OUTROS"> OUTROS</label>
@@ -95,6 +83,10 @@
             <fieldset class="form-group" id="motivoOutros">
                 <legend>Especificar o Motivo</legend>
                 <input type="text" name="outrosMotivo" placeholder="Escreva o motivo">
+            </fieldset>
+            <fieldset class="form-group">
+                <legend>Data de Trabalho</legend>
+                <input type="date" id="dataTrabalho" name="dataTrabalho">
             </fieldset>
             <fieldset class="form-group">
                 <legend>Data da Folga</legend>
@@ -116,26 +108,15 @@
         document.getElementById('filialGroup').addEventListener('change', function() {
             var filialSelecionada = document.querySelector('input[name="filial"]:checked');
             var funcionarioSelect = document.getElementById('funcionario');
-
-            funcionarioSelect.innerHTML = "";
+            funcionarioSelect.innerHTML = "<option value=''>Selecione um funcionário</option>";
 
             if (filialSelecionada) {
-                var optionInicial = document.createElement("option");
-                optionInicial.value = "";
-                optionInicial.textContent = "Selecione um funcionário";
-                funcionarioSelect.appendChild(optionInicial);
-                
                 funcionariosPorFilial[filialSelecionada.value].forEach(function(funcionario) {
                     var option = document.createElement("option");
                     option.value = funcionario;
                     option.textContent = funcionario;
                     funcionarioSelect.appendChild(option);
                 });
-            } else {
-                var optionInicial = document.createElement("option");
-                optionInicial.value = "";
-                optionInicial.textContent = "Selecione a filial primeiro";
-                funcionarioSelect.appendChild(optionInicial);
             }
         });
 
@@ -144,24 +125,31 @@
                 const dataFolgaInput = document.getElementById("dataFolga");
                 const motivoOutrosField = document.getElementById("motivoOutros");
 
-                if (this.value === "DOMINGO") {
-                    // Limitar a data até 7 dias
-                    const hoje = new Date();
-                    const seteDiasDepois = new Date(hoje);
-                    seteDiasDepois.setDate(hoje.getDate() + 7);
-                    dataFolgaInput.max = seteDiasDepois.toISOString().split('T')[0]; // Limita a data até 7 dias
-                } else if (this.value === "OUTROS") {
-                    motivoOutrosField.style.display = "block"; // Exibe o campo para o motivo "OUTROS"
-                } else {
-                    motivoOutrosField.style.display = "none"; // Oculta o campo para o motivo "OUTROS"
-                    dataFolgaInput.removeAttribute("max"); // Remove a limitação de data se não for "DOMINGO"
+                let dataTrabalho = document.getElementById("dataTrabalho").value;
+                if (!dataTrabalho) {
+                    alert("Selecione primeiro a Data de Trabalho!");
+                    this.checked = false;
+                    return;
                 }
+
+                let trabalhoDate = new Date(dataTrabalho);
+                let maxDate = new Date(trabalhoDate);
+                
+                if (this.value === "DOMINGO") {
+                    maxDate.setDate(trabalhoDate.getDate() + 7);
+                } else if (this.value === "FERIADO") {
+                    maxDate.setDate(trabalhoDate.getDate() + 30);
+                }
+
+                dataFolgaInput.min = trabalhoDate.toISOString().split('T')[0];
+                dataFolgaInput.max = maxDate.toISOString().split('T')[0];
+
+                motivoOutrosField.style.display = this.value === "OUTROS" ? "block" : "none";
             });
         });
 
         document.getElementById("form").addEventListener("submit", function(event) {
             event.preventDefault();
-
             let formData = new FormData(this);
 
             fetch(this.action, {
@@ -171,13 +159,10 @@
             .then(response => response.text())
             .then(data => {
                 alert("Folga cadastrada com sucesso!");
-                document.getElementById("form").reset();
+                this.reset();
                 document.getElementById("funcionario").innerHTML = '<option value="">Selecione a filial primeiro</option>';
             })
-            .catch(error => {
-                alert("Erro ao enviar os dados!");
-                console.error("Erro:", error);
-            });
+            .catch(error => alert("Erro ao enviar os dados!"));
         });
     </script>
 </body>
