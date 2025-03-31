@@ -107,10 +107,10 @@
     <script>
         const funcionariosPorFilial = {
             "ARTUR": ["LUCILENE", "FERNANDA"],
-            "FLORIANO": ["MEIRE", "IOLANDA", "FERNANDA", "THACIANE", "SARA"],
+            "FLORIANO": ["MEIRE", "IOLANDA", "FERNANDA", "THACIANNE", "SARA"],
             "JOTA": ["BRUNO", "VERA", "NATALIA", "PRISCILA","DENISE", "CARINA", "LOUISE", "RAYSSA", "FABIOLA", "JÉSSICA"],
             "MODA": ["DAIANE", "LAIANE", "JÔSE CLAIR", "MARIA", "JÉSSICA", "ANA CLARA"],
-            "PONTO": ["SÔNIA", "SANDY", "PAULA", "MATHEUS", "PRISCILA", "DANIELA"]
+            "PONTO": ["SÔNIA", "SANDY", "PAULA", "DEBORA", "PRISCILA", "DANIELA"]
         };
 
         document.getElementById('filialGroup').addEventListener('change', function() {
