@@ -6,7 +6,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0ebf8;
+            background-color: #121212;
             margin: 0;
             padding: 0;
             display: flex;
@@ -14,14 +14,15 @@
             align-items: flex-start;
             min-height: 100vh;
             overflow-y: auto;
+            color: #e0e0e0;
         }
         .form-container {
-            background: white;
+            background: #1e1e1e;
             padding: 30px;
             border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
             width: 100%;
-            max-width: 800px;  /* Aumento da largura máxima */
+            max-width: 800px;
             box-sizing: border-box;
         }
         .form-group {
@@ -30,18 +31,23 @@
         .form-group legend {
             font-size: 16px;
             font-weight: bold;
-            color: #5f6368;
+            color: #b39ddb;
             margin-bottom: 10px;
         }
-        .radio-group label, .select-group select {
+        .radio-group label, 
+        .select-group select, 
+        input[type="date"],
+        input[type="text"],
+        select {
             display: block;
             font-size: 14px;
             padding: 10px;
             border-radius: 4px;
-            border: 1px solid #dadce0;
+            border: 1px solid #444;
             margin-bottom: 8px;
             cursor: pointer;
-            background: #fff;
+            background: #2c2c2c;
+            color: #e0e0e0;
             transition: all 0.3s;
         }
         button {
@@ -56,12 +62,20 @@
             margin-top: 10px;
             transition: background 0.3s;
         }
+        button:hover {
+            background: #5e35b1;
+        }
         #motivoOutros {
             display: none;
         }
-        #filialGroup label, #motivoGroup label, #funcionarioGroup label {
+        #filialGroup label, 
+        #motivoGroup label, 
+        #funcionarioGroup label {
             display: block;
             margin-bottom: 8px;
+        }
+        input[type="radio"] {
+            margin-right: 5px;
         }
     </style>
 </head>
