@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
@@ -186,12 +187,13 @@
 
         if (this.value === "DOMINGO") {
           maxDate.setDate(dataTrabalho.getDate() + 7);
-        } else if (this.value === "FERIADO") {
+        } else if (this.value === "FERIADO" || this.value === "OUTROS") {
           maxDate.setDate(dataTrabalho.getDate() + 30);
         }
 
         dataFolgaInput.min = dataTrabalho.toISOString().split('T')[0];
         dataFolgaInput.max = maxDate.toISOString().split('T')[0];
+
         motivoOutrosField.style.display = this.value === "OUTROS" ? "block" : "none";
       });
     });
@@ -209,6 +211,7 @@
           alert("Folga cadastrada com sucesso!");
           this.reset();
           document.getElementById("funcionario").innerHTML = '<option value="">Selecione a filial primeiro</option>';
+          document.getElementById("motivoOutros").style.display = "none";
         })
         .catch(error => alert("Erro ao enviar os dados!"));
     });
