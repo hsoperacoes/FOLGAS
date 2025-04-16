@@ -152,7 +152,7 @@
       "FLORIANO": ["FERNANDA", "MEIRE", "SARA", "THACIANNE"],
       "JOTA": ["BRUNO", "CARINA", "DENISE", "FABIOLA", "JÉSSICA", "LOUISE", "NATALIA", "PRISCILA", "RAYSSA", "VERA"],
       "MODA": ["ANA CLARA", "DAIANE", "JÉSSICA", "MARCIA", "NAISE", "MARIA"],
-      "PONTO": ["DANIELA", "DEBORA", "ISADORA", "PAULA", "PRISCILA", "SANDY", "SÔNIA"]
+      "PONTO": ["DANIELA", "DEBORA", "ISADORA", "PAULA", "PRISCILA", "SANDY", "SÔNIA", "SUELI"]
     };
 
     document.getElementById('filialGroup').addEventListener('change', function() {
