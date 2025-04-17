@@ -102,7 +102,7 @@
 <body>
   <div class="form-container">
     <h2>CADASTRO DE FOLGA FUNCIONÁRIOS</h2>
-    <form id="form" method="POST" action="https://script.google.com/macros/s/AKfycbwh-YUwL2o3_i-bfcV9RMzLcoI98vyyGwEXf4LHlG5KJ59gIAlUe1_VVlFQMBqU6PwR/exec">
+    <form id="form" method="POST">
       <fieldset class="form-group" id="filialGroup">
         <legend>Filial</legend>
         <label><input type="radio" name="filial" value="ARTUR"> ARTUR</label>
@@ -201,18 +201,26 @@
       event.preventDefault();
       const formData = new FormData(this);
 
-      fetch(this.action, {
-        method: "POST",
-        body: formData
-      })
-        .then(response => response.text())
-        .then(data => {
+      // Coleta os dados do formulário
+      const dados = [
+        formData.get("filial"),
+        formData.get("funcionario"),
+        formData.get("dataTrabalho"),
+        formData.get("motivo"),
+        formData.get("dataFolga"),
+        formData.get("outrosMotivo")
+      ];
+
+      // Chama a função do Google Apps Script
+      google.script.run
+        .withSuccessHandler(function() {
           alert("Folga cadastrada com sucesso!");
           this.reset();
-          document.getElementById("funcionario").innerHTML = '<option value="">Selecione a filial primeiro</option>';
-          document.getElementById("motivoOutros").style.display = "none";
         })
-        .catch(error => alert("Erro ao enviar os dados!"));
+        .withFailureHandler(function(erro) {
+          alert("Erro ao enviar os dados: " + erro.message);
+        })
+        .processarNovaFolga(dados);
     });
   </script>
 </body>
