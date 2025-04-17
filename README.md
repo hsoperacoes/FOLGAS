@@ -187,7 +187,7 @@
         if (this.value === "DOMINGO") {
           maxDate.setDate(dataTrabalho.getDate() + 7);
         } else if (this.value === "FERIADO" || this.value === "OUTROS") {
-          maxDate.setDate(dataTrabalho.getDate() + 30);
+          maxDate.setDate(dataTrabalho.getDate() + 60);
         }
 
         dataFolgaInput.min = dataTrabalho.toISOString().split('T')[0];
